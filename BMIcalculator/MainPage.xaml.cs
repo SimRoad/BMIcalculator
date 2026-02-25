@@ -2,22 +2,32 @@
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    int count = 0;
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage()
+    {
+        InitializeComponent();
+    }
 
-	private void OnCounterClicked(object? sender, EventArgs e)
-	{
-		count++;
+    private void OnMetricCalculate(object? sender, EventArgs e)
+    {
+        if (double.TryParse(MetricHeightEntry.Text, out double height) &&
+            double.TryParse(MetricWeightEntry.Text, out double weight))
+        {
+            double toMeters = height / 100;
+            double bmi = weight / (toMeters * toMeters);
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+            string category = bmi switch
+            {
+                < 0 => "Not possible",
+                < 18.5 => "Underweight",
+                < 25 => "Normal",
+                < 35 => "Obese",
+                _ => "Severely Obese"
+            };
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+            ResultsLabel.Text = $"{bmi:F2}";
+            BodyType.Text = $"{category}";
+        }
+    }
 }
