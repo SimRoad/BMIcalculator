@@ -18,6 +18,22 @@
                 Padding="20"
                 BackgroundColor="White">
                 <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="10"
+                    IsVisible="False">
+                    <Button
+                        Text="Metric?"
+                        FontSize="24"
+                        BackgroundColor="#00B499"/>
+                    <Button
+                        x:Name="ImperialBtn"
+                        Text="Imperial"
+                        FontSize="24"
+                        BackgroundColor="#00B499"
+                        Clicked="ToggleResults"/>
+                </HorizontalStackLayout>
+                
+                <HorizontalStackLayout
                     Spacing="10"
                     VerticalOptions="Center">
                     <Label
@@ -70,7 +86,9 @@
                 x:Name="ResultsLayout"
                 Padding="15"
                 Spacing="15"
-                BackgroundColor="White">
+                BackgroundColor="White"
+                IsVisible="False">
+              
                 <Label
                     Text="Your results are..."
                     FontSize="24"/>
@@ -83,7 +101,9 @@
                     x:Name="BodyType"
                     FontSize="24"
                     Text=""
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center"
+                    Padding="20, 0"
+                    />
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
